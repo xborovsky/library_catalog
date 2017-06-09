@@ -1,0 +1,7 @@
+com\mycompany\book\library\backend\service\BookManagerImpl.class
+com\mycompany\book\library\backend\service\BookManager.class
+com\mycompany\book\library\backend\Config.class
+com\mycompany\book\library\backend\Book.class
+com\mycompany\book\library\backend\exception_mapper\BookNotFoundExceptionMapper.class
+com\mycompany\book\library\backend\endpoint\BookEndpoint.class
+com\mycompany\book\library\backend\BookNotFoundException.class
