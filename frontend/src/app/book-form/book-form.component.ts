@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/empty';
+
 import {Router} from '@angular/router';
 
 import { BookService } from '.././book.service';
@@ -12,11 +15,22 @@ import { Book } from '.././book';
 })
 export class BookFormComponent {
 
+  err : boolean = false;
+  errMessage : string = 'Could not add book!';
+  errMessageDescription : string;
+
   constructor(private router : Router, private bookService : BookService) { }
 
   onSubmit(form: any) : void {
-    form.reset();
-    this.router.navigate(['']);
+    this.err = false;
+    this.bookService.addBook(new Book(form.value.title, form.value.number, form.value.isbn))
+      .subscribe((statusCode : number) => {
+        form.reset();
+        this.router.navigate(['']);
+      }, err => {
+        this.err = true;
+        this.errMessageDescription = err.status + ': ' + err.statusText;
+      });
   }
 
 }

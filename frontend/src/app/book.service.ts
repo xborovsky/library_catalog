@@ -25,8 +25,10 @@ export class BookService {
       });
   }
 
-  addBook() : void {
-    //this.http.post(ENDPOINT_URL + '/book/add'); // TODO
+  addBook(book : Book) : Observable<number> {
+    console.log('add book');
+    return this.http.post(ENDPOINT_URL + '/book/add', JSON.stringify(book))
+      .map((res : Response) => { return 200; });
   }
 
 }

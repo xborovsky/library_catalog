@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="alert alert-danger" [hidden]="!err">
+    <strong>{{ errMessage }}</strong><br />
+    {{ errMessageDescription }}
+  </div>
+
   <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div [ngClass]="{'form-group' : true, 'has-success' : !title.errors && (title.dirty || title.touched), 'has-feedback' : (title.dirty || title.touched), 'has-error' : title.errors && (title.dirty || title.touched)}">
       <label for="title" class="col-sm-2">Title:</label>
@@ -34,7 +39,7 @@
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add book</button>
-        <button type="button" class="btn btn-default">Cancel</button>
+        <button type="button" class="btn btn-default" [routerLink]="['/']">Cancel</button>
       </div>
     </div>
   </form>
