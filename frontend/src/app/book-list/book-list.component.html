@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Page count</th>
+        <th>Checked out</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of observableBooks | async; let cnt=index;">
+        <td>{{ cnt+1 }}</td>
+        <td>{{ book.getTitle() }}</td>
+        <td>{{ book.getISBN() }}</td>
+        <td>{{ book.getPageCount() }}</td>
+        <td>{{ book.isCheckedOut() }}</td>
+        <td>TODO: actions</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
