@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="alert alert-danger" [hidden]="!err">
+    <strong>{{ errMessage }}</strong><br />
+    {{ errMessageDescription }}
+  </div>
+
+  <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="book">
+    <input type="hidden" [(ngModel)]="book.id" name="id" />
+    <div [ngClass]="{'form-group' : true, 'has-success' : !title.errors && (title.dirty || title.touched), 'has-feedback' : (title.dirty || title.touched), 'has-error' : title.errors && (title.dirty || title.touched)}">
+      <label for="title" class="col-sm-2">Title:</label>
+      <div class="col-sm-10">
+        <input type="text" name="title" id="title" class="form-control" #title="ngModel" [(ngModel)]="book.title" required />
+        <span class="glyphicon glyphicon-ok form-control-feedback" *ngIf="!title.errors && (title.dirty || title.touched)"></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="title.errors && (title.dirty || title.touched)"></span>
+        <span class="help-inline error" *ngIf="(title.dirty || title.touched) && title.errors?.required">Title is required.</span>
+      </div>
+    </div>
+    <div [ngClass]="{'form-group' : true, 'has-success' : !pageCount.errors && (pageCount.dirty || pageCount.touched), 'has-feedback' : (pageCount.dirty || pageCount.touched), 'has-error' : pageCount.errors && (pageCount.dirty || pageCount.touched)}">
+      <label for="pageCount" class="col-sm-2">Page count:</label>
+      <div class="col-sm-10">
+        <input type="number" name="pageCount" id="pageCount" #pageCount="ngModel" [(ngModel)]="book.pageCount" class="form-control" required min="1" max="99999" />
+        <span class="glyphicon glyphicon-ok form-control-feedback" *ngIf="!pageCount.errors && (pageCount.dirty || pageCount.touched)"></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="pageCount.errors && (pageCount.dirty || pageCount.touched)"></span>
+        <span class="help-inline error" *ngIf="(pageCount.dirty || pageCount.touched) && pageCount.errors?.required">Page count is required.</span>
+        <span class="help-inline error" *ngIf="(pageCount.dirty || pageCount.touched) && pageCount.errors?.min">Invalid value (1-99999).</span>
+        <span class="help-inline error" *ngIf="(pageCount.dirty || pageCount.touched) && pageCount.errors?.max">Invalid value (1-99999).</span>
+      </div>
+    </div>
+    <div [ngClass]="{'form-group' : true, 'has-success' : !isbn.errors && (isbn.dirty || isbn.touched), 'has-feedback' : (isbn.dirty || isbn.touched), 'has-error' : isbn.errors && (isbn.dirty || isbn.touched)}">
+      <label for="isbn" class="col-sm-2">ISBN</label>
+      <div class="col-sm-10">
+        <input type="text" name="isbn" id="isbn" #isbn="ngModel" [(ngModel)]="book.ISBN" class="form-control"
+          required pattern="^(?:ISBN(?:-13)?:? )?(?=[0-9]{13}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)97[89][- ]?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9]$" />
+        <span class="glyphicon glyphicon-ok form-control-feedback" *ngIf="!isbn.errors && (isbn.dirty || isbn.touched)"></span>
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isbn.errors && (isbn.dirty || isbn.touched)"></span>
+        <span class="help-inline error" *ngIf="(isbn.dirty || isbn.touched) && isbn.errors?.required">ISBN is required.</span>
+        <span class="help-inline error" *ngIf="(isbn.dirty || isbn.touched) && isbn.errors?.pattern">ISBN is invalid.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save book</button>
+        <button type="button" class="btn btn-default" [routerLink]="['/']">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

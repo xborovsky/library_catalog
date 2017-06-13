@@ -23,7 +23,7 @@ export class BookFormComponent {
 
   onSubmit(form: any) : void {
     this.err = false;
-    this.bookService.addBook(new Book(form.value.title, form.value.number, form.value.isbn))
+    this.bookService.addBook(new Book(null, form.value.title, form.value.pageCount, form.value.isbn))
       .subscribe((statusCode : number) => {
         form.reset();
         this.router.navigate(['']);

@@ -1,7 +1,13 @@
 <div class="container">
+
+  <div class="alert alert-success" [hidden]="!successMessage">
+    <strong>{{ successMessage }}</strong>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>Title</th>
         <th>ISBN</th>
@@ -13,11 +19,22 @@
     <tbody>
       <tr *ngFor="let book of observableBooks | async; let cnt=index;">
         <td>{{ cnt+1 }}</td>
+        <td>
+          <a class="icon-link" [routerLink]="['/detail', book.getId()]">
+            <img src="assets/img/detail.png" class="icon" />
+          </a>
+        </td>
         <td>{{ book.getTitle() }}</td>
         <td>{{ book.getISBN() }}</td>
         <td>{{ book.getPageCount() }}</td>
         <td>{{ book.isCheckedOut() }}</td>
-        <td>TODO: actions</td>
+        <td>
+          <a class="icon-link" [routerLink]="['/edit', book.getId()]">
+            <img src="assets/img/edit.png" class="icon" />
+          </a>
+          |
+          <img src="assets/img/delete.png" class="icon" (click)="deleteBook(book)" style="cursor: pointer;" />
+        </td>
       </tr>
     </tbody>
   </table>

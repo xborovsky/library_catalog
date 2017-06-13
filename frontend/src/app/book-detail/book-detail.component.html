@@ -1,0 +1,22 @@
+<div class="container">
+  <table class="table" *ngIf="book">
+    <tbody>
+      <tr>
+        <th>Title</th>
+        <td>{{ book.title }}</td>
+      </tr>
+      <tr>
+        <th>ISBN</th>
+        <td>{{ book.ISBN }}</td>
+      </tr>
+      <tr>
+        <th>Page count</th>
+        <td>{{ book.pageCount }}</td>
+      </tr>
+      <tr>
+        <th>Checked out</th>
+        <td>{{ book.checkedOut }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

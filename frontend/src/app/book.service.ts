@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -19,15 +19,39 @@ export class BookService {
       .map((res : Response) => {
           var books = [];
           res.json().forEach(function(book) {
-            books.push(new Book(book.title, book.pageCount, book.isbn, book.checkedOut));
+            books.push(new Book(book.id, book.title, book.pageCount, book.ISBN, book.checkedOut));
           });
           return books;
       });
   }
 
   addBook(book : Book) : Observable<number> {
-    console.log('add book');
-    return this.http.post(ENDPOINT_URL + '/book/add', JSON.stringify(book))
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(ENDPOINT_URL + '/book/add', JSON.stringify(book), options)
+      .map((res : Response) => { return 200; });
+  }
+
+  getBook(id : number) : Observable<Book> {
+    return this.http.get(ENDPOINT_URL + '/book/' + id)
+      .map((res : Response) => {
+        var book = res.json();
+        return new Book(book.id, book.title, book.pageCount, book.ISBN, book.checkedOut);
+      });
+  }
+
+  updateBook(book : Book) : Observable<number> {
+    console.log(book);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(ENDPOINT_URL + '/book/edit', book, options)
+      .map((res : Response) => { return 200; });
+  }
+
+  deleteBook(id : number) : Observable<number> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(ENDPOINT_URL + '/book/delete', id, options)
       .map((res : Response) => { return 200; });
   }
 

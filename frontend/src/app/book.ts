@@ -1,14 +1,20 @@
 export class Book {
+    private id : number;
     private title : string;
     private pageCount : number;
     private ISBN : string;
     private checkedOut : boolean;
 
-    constructor(title : string, pageCount : number, ISBN : string, checkedOut? : boolean) {
+    constructor(id: number, title : string, pageCount : number, ISBN : string, checkedOut? : boolean) {
+        this.id = id;
         this.title = title;
         this.pageCount = pageCount;
         this.ISBN = ISBN;
         this.checkedOut = checkedOut || false;
+    }
+
+    public getId() : number {
+        return this.id;
     }
 
     public getTitle() : string {

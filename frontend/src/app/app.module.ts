@@ -10,14 +10,18 @@ import { BookService } from './book.service';
 import { BookFormComponent } from './book-form/book-form.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
-import { RoutesModule } from './routes.module';
+import { RoutesModule } from './routes/routes.module';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookListComponent,
     BookFormComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    BookDetailComponent,
+    BookEditComponent
   ],
   imports: [
     BrowserModule,
