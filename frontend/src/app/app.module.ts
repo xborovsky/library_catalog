@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './book-list/book-list.component';
 
 import { BookService } from './book.service';
+import { AuthService } from './auth.service';
 import { BookFormComponent } from './book-form/book-form.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 import { RoutesModule } from './routes/routes.module';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { BookEditComponent } from './book-edit/book-edit.component';
     BookFormComponent,
     ErrorPageComponent,
     BookDetailComponent,
-    BookEditComponent
+    BookEditComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { BookEditComponent } from './book-edit/book-edit.component';
     HttpModule,
     RoutesModule
   ],
-  providers: [BookService],
+  providers: [BookService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
