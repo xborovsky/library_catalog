@@ -14,4 +14,10 @@ public interface BookManager {
 
     void deleteBook(Book book);
 
+    boolean validateBook(Book book);
+
+    Book findById(long id) throws BookNotFoundException;
+
+    void editBook(Book book);
+
 }
