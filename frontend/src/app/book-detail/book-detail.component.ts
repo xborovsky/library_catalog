@@ -11,8 +11,7 @@ import { BookService } from './../book.service';
 
 @Component({
   selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css']
+  templateUrl: './book-detail.component.html'
 })
 export class BookDetailComponent implements OnInit {
 
