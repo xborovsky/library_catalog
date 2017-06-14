@@ -16,6 +16,9 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
+
+import { PasswordValidatorDirective } from './password.validator.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { LogoutComponent } from './logout/logout.component';
     BookDetailComponent,
     BookEditComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent,
+    PasswordValidatorDirective
   ],
   imports: [
     BrowserModule,

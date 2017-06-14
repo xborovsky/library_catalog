@@ -5,7 +5,7 @@
       <strong>{{ errMessage }}</strong>
     </div>
 
-  <form class="form-horizontal login-form" #form="ngForm" (ngSubmit)="login(form)">
+  <form class="form-horizontal login-form" #form="ngForm" (ngSubmit)="login(form)" novalidate>
     <div class="form-group">
       <label for="username" class="col-sm-2">Username:</label>
       <div class="col-sm-10">
@@ -21,6 +21,11 @@
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
         <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Login</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <a [routerLink]="['/register']">Not having an account? Register here!</a>
       </div>
     </div>
   </form>
